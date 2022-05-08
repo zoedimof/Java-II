@@ -2,7 +2,10 @@ package com.olympic.cis143.m03.student.homework;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+
+import com.olympic.cis143.m04.student.tacotruck.TacoImpl;
 
 public class DeckIteratorImpl implements Deck {
 	
@@ -63,9 +66,16 @@ public class DeckIteratorImpl implements Deck {
 
 	//returns a random card
 	public Card dealCard() {
+		Iterator<Card> iter = this.deck.iterator();
 		int random = (int) Math.random() * deck.size();
-    	Card card = deck.get(random);
-    	deck.remove(random);
+		
+		for(int i = 0; i < random; i++)
+		{
+			iter.next();
+		}
+		
+    	Card card = deck.get(0);
+    	deck.remove(0);
         return card;
 	}
 
