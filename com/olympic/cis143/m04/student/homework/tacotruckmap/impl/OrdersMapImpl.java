@@ -15,26 +15,16 @@ import java.util.UUID;
 public class OrdersMapImpl implements Orders {
 	
 	private Map<String, ArrayList<TacoImpl>> tacoMap = new HashMap<>();
-	ArrayList<TacoImpl> tacoArray = new ArrayList<>();
 
     @Override
     public void createOrder(final String orderid) {
+    	ArrayList<TacoImpl> tacoArray = new ArrayList<>();
     	tacoMap.put(orderid, tacoArray);
     }
 
     @Override
     public void addTacoToOrder(final String orderid, final TacoImpl taco) throws OrderDoesNotExistException {
-    	if(!tacoMap.containsKey(orderid))
-    	{
-    		throw new OrderDoesNotExistException(orderid);
-    	}
-    	for(String key : tacoMap.keySet())
-    	{
-    		if (key == orderid)
-    		{
-    			tacoArray.add(taco);
-    		}
-    	}
+    	tacoMap.get(orderid).add(taco);
     }
 
     @Override
